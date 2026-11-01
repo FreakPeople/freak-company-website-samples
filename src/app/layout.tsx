@@ -8,5 +8,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ko"><body>{children}</body></html>;
+  return (
+    <html lang="ko">
+      {/* Browser tools may add body attributes such as ap-style before hydration.
+          Suppress only this element's warning; descendants remain checked. */}
+      <body suppressHydrationWarning>{children}</body>
+    </html>
+  );
 }
