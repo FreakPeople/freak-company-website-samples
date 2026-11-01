@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "Frans Hals Museum | Haarlem’s museum of fine arts",
-  description: "Discover 16th- and 17th-century, modern and contemporary art at the Frans Hals Museum in Haarlem.",
+  applicationName: "FREAK ART MUSEUM",
+  title: "FREAK ART MUSEUM | Art by Freak Makers",
+  description: "Discover classical, modern and contemporary art at FREAK ART MUSEUM. A fresh perspective by Freak Makers.",
   robots: { index: false, follow: false },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

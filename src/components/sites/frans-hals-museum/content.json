@@ -1,7 +1,7 @@
 [
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/woman-in-a-black-hat-probably-annie-oud-dinaux",
+    "href": "#collection",
     "image": "woman-in-a-black-hat-probably-annie-oud-dinaux.jpg",
     "alt": "Woman in a Black Hat, probably Annie Oud-Dinaux",
     "texts": [
@@ -12,7 +12,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/wishing-on-a-star",
+    "href": "#collection",
     "image": "wishing-on-a-star.jpg",
     "alt": "Wishing on a Star",
     "texts": [
@@ -23,7 +23,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/self-portrait-with-brushes",
+    "href": "#collection",
     "image": "self-portrait-with-brushes.jpg",
     "alt": "Self-Portrait with Brushes",
     "texts": [
@@ -34,7 +34,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/twelve-members-of-the-haarlem-brotherhood-of-jerusalem-pilgrims",
+    "href": "#collection",
     "image": "twelve-members-of-the-haarlem-brotherhood-of-jerusalem-pilgrims.jpg",
     "alt": "Twelve Members of the Haarlem Brotherhood of Jerusalem Pilgrims",
     "texts": [
@@ -45,7 +45,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/the-girl-with-the-dangling-legs",
+    "href": "#collection",
     "image": "the-girl-with-the-dangling-legs.jpg",
     "alt": "The Girl with the Dangling Legs",
     "texts": [
@@ -56,7 +56,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/st-luke-painting-the-virgin",
+    "href": "#collection",
     "image": "st-luke-painting-the-virgin.jpg",
     "alt": "St Luke Painting the Virgin",
     "texts": [
@@ -67,7 +67,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/hercules-and-cacus",
+    "href": "#collection",
     "image": "hercules-and-cacus.jpg",
     "alt": "Hercules and Cacus",
     "texts": [
@@ -78,7 +78,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/caress",
+    "href": "#collection",
     "image": "caress.jpg",
     "alt": "Caress",
     "texts": [
@@ -89,7 +89,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/woman-in-a-large-hat-in-a-summer-house",
+    "href": "#collection",
     "image": "woman-in-a-large-hat-in-a-summer-house.jpg",
     "alt": "Woman in a Large Hat in a Summer House",
     "texts": [
@@ -100,7 +100,7 @@
   },
   {
     "group": "art",
-    "href": "https://franshalsmuseum.nl/en/collection/ships-in-a-gale",
+    "href": "#collection",
     "image": "ships-in-a-gale.jpg",
     "alt": "Ships in a Gale",
     "texts": [
@@ -111,7 +111,7 @@
   },
   {
     "group": "family",
-    "href": "https://franshalsmuseum.nl/en/families-and-children/de-dikke-doe-and-luistertour",
+    "href": "#families",
     "image": "de-dikke-doe-and-luistertour.jpg",
     "alt": "Child smelling a painting via a scent in a panel when taking part in the Dikke Doe- en Luistertour.",
     "texts": [
@@ -122,9 +122,9 @@
   },
   {
     "group": "family",
-    "href": "https://franshalsmuseum.nl/en/families-and-children/scavenger-hunt",
+    "href": "#families",
     "image": "scavenger-hunt.jpg",
-    "alt": "Two children taking part in the scavenger hunt at the Frans Hals Museum.",
+    "alt": "Two children taking part in the scavenger hunt at the FREAK ART MUSEUM.",
     "texts": [
       "Activiteit",
       "Always on",
@@ -133,7 +133,7 @@
   },
   {
     "group": "family",
-    "href": "https://franshalsmuseum.nl/en/families-and-children/create-your-own-group-portrait",
+    "href": "#families",
     "image": "create-your-own-group-portrait.jpg",
     "alt": "Getekende portretten door kinderen aan de muur in zaal 13",
     "texts": [
@@ -144,7 +144,7 @@
   },
   {
     "group": "family",
-    "href": "https://franshalsmuseum.nl/en/families-and-children/dress-up-as-a-civic-guard",
+    "href": "#families",
     "image": "dress-up-as-a-civic-guard.jpg",
     "alt": "Verkleed je als schutter voor kinderen en families in de schutterszaal",
     "texts": [
@@ -155,9 +155,9 @@
   },
   {
     "group": "family",
-    "href": "https://franshalsmuseum.nl/en/families-and-children/discover-the-doll-s-house",
+    "href": "#families",
     "image": "discover-the-doll-s-house.jpg",
-    "alt": "Mother and child looking at the doll’s house at the Frans Hals Museum.",
+    "alt": "Mother and child looking at the doll’s house at the FREAK ART MUSEUM.",
     "texts": [
       "Activiteit",
       "Always on",
@@ -166,9 +166,9 @@
   },
   {
     "group": "family",
-    "href": "https://franshalsmuseum.nl/en/see-and-do/celebrate-your-birthday-at-the-museum",
+    "href": "#families",
     "image": "celebrate-your-birthday-at-the-museum.jpg",
-    "alt": "Children celebrating a birthday at the Frans Hals Museum.",
+    "alt": "Children celebrating a birthday at the FREAK ART MUSEUM.",
     "texts": [
       "Activity",
       "On request",
