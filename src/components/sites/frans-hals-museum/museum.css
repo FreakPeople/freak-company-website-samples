@@ -936,3 +936,13 @@
     scroll-padding-inline:16px
   }
 }
+
+/* Single-page navigation and contact information. */
+.museum-site [id]{scroll-margin-top:24px}
+.museum-card{cursor:default}
+.feature-description{max-width:360px;font-size:18px;line-height:1.6;text-transform:none}
+.contact-email{overflow-wrap:anywhere;margin:18px 0}
+.footer-wordmark{width:100px;height:auto}
+.footer-bottom>p{font-size:14px}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
