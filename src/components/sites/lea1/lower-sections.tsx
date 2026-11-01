@@ -129,7 +129,7 @@ export function LowerSections() {
       <div className="lea-container">
         <Reveal><div className={styles.teamHeading}>
           <Heading eyebrow="MEDICAL TEAM" left description="각 분야별 전문의가 체계적인 진단과 치료 계획을 통해 최상의 결과를 약속합니다.">다양한 경험과 전문성을<br />갖춘 우수한 의료진</Heading>
-          <ArrowLink href="#team">의료진 더보기</ArrowLink>
+          <ArrowLink href="#clinic-gallery">병원 시설 둘러보기</ArrowLink>
         </div></Reveal>
         <Reveal><div className={styles.doctors}>{doctors.map(doctor => <article className={styles.doctorCard} key={doctor.name}>
           <div className={styles.doctorPhoto}><img src={asset(doctor.photo)} alt={doctor.name} loading="lazy" /></div>
@@ -146,16 +146,15 @@ export function LowerSections() {
         <Reveal fade><ClinicGallery /></Reveal>
       </div>
     </section>
-    <section className={styles.youtube} id="youtube" aria-label="치과 치료 영상">
+    <section className={styles.youtube} id="dental-guide" aria-label="치과 진료 가이드">
       <div className="lea-container">
-        <Reveal><Heading eyebrow="OUR YOUTUBE">궁금했던 치과 치료,<br />영상으로 쉽게 확인하세요</Heading></Reveal>
+        <Reveal><Heading eyebrow="DENTAL GUIDE">궁금했던 치과 치료,<br />진료 가이드로 확인하세요</Heading></Reveal>
         <Reveal><div className={styles.videoGrid}>{videos.map(video => <article className={styles.videoCard} key={video.title}>
-          <button className={styles.videoCover} type="button" disabled aria-label={`${video.title} 영상 재생`} title="프릭미래치과 진료 영상을 준비하고 있습니다.">
-            <img src={asset(video.image)} alt="" loading="lazy" /><span className={styles.playIcon} aria-hidden="true" />
-          </button>
+          <div className={styles.videoCover}>
+            <img src={asset(video.image)} alt="" loading="lazy" />
+          </div>
           <div className={styles.videoText}><h3>{video.title}</h3><p>{video.desc}</p></div>
         </article>)}</div></Reveal>
-        <Reveal><div className={styles.youtubeMore}><ArrowLink href="https://www.freakmakers.co.kr/" light>프릭메이커스 보러가기</ArrowLink></div></Reveal>
       </div>
     </section>
   </>;

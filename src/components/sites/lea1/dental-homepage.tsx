@@ -2,20 +2,11 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import Link from "next/link";
 import { LowerSections } from "./lower-sections";
 import styles from "./dental-homepage.module.css";
 
-const brandUrl = "https://www.freakmakers.co.kr";
-const destination = (path: string) => {
-  if (path === "/clinic") return "#services";
-  if (path === "/about") return "#clinic-gallery";
-  if (path === "/doctor") return "#team";
-  if (path === "/event") return "#results";
-  return "#visit";
-};
 const asset = (name: string) => `/sites/lea1/${name}`;
-const nav = [["진료 소개", "/clinic"], ["병원 소개", "/about"], ["의료진 소개", "/doctor"], ["프로모션", "/event"]];
+const nav = [["진료 소개", "#services"], ["병원 시설", "#clinic-gallery"], ["의료진 소개", "#team"], ["치료 사례", "#results"]];
 
 function Icon({ name, className }: { name: string; className?: string }) {
   const paths: Record<string, string> = {
@@ -67,15 +58,15 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <button className={styles.menuButton} onClick={() => setOpen(true)} aria-label="메뉴 열기" aria-expanded={open}><Icon name="menu" /></button>
-        <Link className={styles.logo} href="/" aria-label="프릭미래치과 홈"><img src={asset("freak-logo.svg")} alt="프릭미래치과" width="210" height="40" /></Link>
-        <nav className={styles.desktopNav} aria-label="주 메뉴">{nav.map(([label, path]) => <a key={path} href={destination(path)}>{label}</a>)}</nav>
-        <Link className={styles.inquiry} href={`${brandUrl}/#contact`}>온라인 견적 문의 <Icon name="arrow" /></Link>
-        <Link className={styles.mobileCall} href={`${brandUrl}/#contact`} aria-label="온라인 견적 문의"><Icon name="headset" /></Link>
+        <a className={styles.logo} href="#intro" aria-label="프릭미래치과 홈"><img src={asset("freak-logo.svg")} alt="프릭미래치과" width="210" height="40" /></a>
+        <nav className={styles.desktopNav} aria-label="주 메뉴">{nav.map(([label, path]) => <a key={path} href={path} onClick={() => setOpen(false)}>{label}</a>)}</nav>
+        <a className={styles.inquiry} href="#contact">상담 문의 <Icon name="arrow" /></a>
+        <a className={styles.mobileCall} href="#contact" aria-label="상담 문의"><Icon name="headset" /></a>
       </div>
     </header>
     {open && <div className={styles.menuOverlay}>
       <button className={styles.menuBackdrop} onClick={() => setOpen(false)} aria-label="메뉴 닫기" />
-      <nav className={styles.mobileNav} aria-label="모바일 메뉴"><div className={styles.loginRow}><span>프릭미래치과에 오신 것을 환영합니다.</span><a href={`${brandUrl}/#contact`}>문의</a></div>{nav.map(([label,path]) => <a key={path} href={destination(path)}>{label}</a>)}</nav>
+      <nav className={styles.mobileNav} aria-label="모바일 메뉴"><div className={styles.loginRow}><span>프릭미래치과에 오신 것을 환영합니다.</span><a href="#contact" onClick={() => setOpen(false)}>문의</a></div>{nav.map(([label,path]) => <a key={path} href={path} onClick={() => setOpen(false)}>{label}</a>)}</nav>
       <button className={styles.closeMenu} onClick={() => setOpen(false)} aria-label="메뉴 닫기"><Icon name="close" /></button>
     </div>}
   </>;
@@ -97,7 +88,7 @@ function Hero() {
     return () => clearInterval(timer);
   }, []);
   const move = (direction: number) => { setAnimated(true); setCurrent(i => Math.max(0, Math.min(4, i + direction))); };
-  return <section className={styles.hero} aria-label="병원 소개 슬라이드" tabIndex={0}
+  return <section className={styles.hero} id="intro" aria-label="병원 소개 슬라이드" tabIndex={0}
     onKeyDown={e => { if (e.key === "ArrowRight") move(1); if (e.key === "ArrowLeft") move(-1); }}
     onPointerDown={e => { if (!(e.target as HTMLElement).closest("a")) { start.current = e.clientX; e.currentTarget.setPointerCapture(e.pointerId); } }}
     onPointerUp={e => { if (start.current !== null && Math.abs(e.clientX - start.current) > 40) move(e.clientX < start.current ? 1 : -1); start.current = null; }}>
@@ -139,7 +130,7 @@ function Services() {
 
 function Strengths() {
   return <section className={styles.strengths}><Reveal className={`lea-container ${styles.strengthsRow}`}>
-    <div className={styles.strengthsCopy}><p className={styles.eyebrow}>OUR STRENGTHS</p><h2>오래 유지되는<br />치아를 위한 맞춤 진료</h2><p className={styles.strengthsDesc}>한 번의 치료로 끝나는 것이 아니라, 오랫동안 건강하게 유지될 수 있는<br className={styles.desktopBreak} /> 치아를 목표로 합니다. 프릭미래치과는 정밀 진단과 체계적인 치료 계획을<br className={styles.desktopBreak} /> 통해 재치료 없는 튼튼한 결과를 약속드리며, 치료 후에도 꾸준한 관리와<br className={styles.desktopBreak} /> 정기 검진으로 환자분의 구강 건강을 끝까지 책임집니다.</p><ActionLink href="#services">병원소개 보러가기</ActionLink></div>
+    <div className={styles.strengthsCopy}><p className={styles.eyebrow}>OUR STRENGTHS</p><h2>오래 유지되는<br />치아를 위한 맞춤 진료</h2><p className={styles.strengthsDesc}>한 번의 치료로 끝나는 것이 아니라, 오랫동안 건강하게 유지될 수 있는<br className={styles.desktopBreak} /> 치아를 목표로 합니다. 프릭미래치과는 정밀 진단과 체계적인 치료 계획을<br className={styles.desktopBreak} /> 통해 재치료 없는 튼튼한 결과를 약속드리며, 치료 후에도 꾸준한 관리와<br className={styles.desktopBreak} /> 정기 검진으로 환자분의 구강 건강을 끝까지 책임집니다.</p><ActionLink href="#clinic-gallery">병원 시설 둘러보기</ActionLink></div>
     <div className={styles.strengthsImage}><img src={asset("ef75fa8e-20ac-4da8-ad01-c92263e6083b.webp")} alt="환자와 상담하는 치과 의료진" loading="lazy" /></div>
   </Reveal></section>;
 }
@@ -166,7 +157,7 @@ function SignatureSystem() {
     return () => clearInterval(timer);
   },[paused]);
   const move = (d:number) => setActive(i => (i+d+steps.length)%steps.length);
-  return <section className={styles.signature}>
+  return <section className={styles.signature} id="signature">
     <Reveal className={`${styles.sectionHeading} ${styles.signatureHeading}`}><p>SIGNATURE SYSTEM</p><h2>프릭미래치과만의 특화된<br />원데이 임플란트 진료 시스템</h2></Reveal>
     <Reveal className={styles.wideContainer}>
       <div className={styles.step} aria-label="진료 단계 안내" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
@@ -194,14 +185,25 @@ function VisitUs() {
 }
 
 function QuickMenu() {
-  return <aside className={styles.quickMenu} aria-label="바로가기 메뉴">{[["calendar","예약하기","#visit",""],["book","프릭 소개",`${brandUrl}/introduce`,""],["mail","이메일 문의","mailto:freakmakers@gmail.com",""]].map(([icon,label,href,sub])=><a key={label} href={href}><Icon name={icon} /><span><b>{label}</b>{sub&&<small>{sub}</small>}</span></a>)}</aside>;
+  return <aside className={styles.quickMenu} aria-label="바로가기 메뉴">{[["calendar", "진료 시간", "#visit"], ["book", "병원 시설", "#clinic-gallery"], ["mail", "문의 안내", "#contact"]].map(([icon, label, href]) => <a key={href} href={href}><Icon name={icon} /><span><b>{label}</b></span></a>)}</aside>;
 }
 
 function Footer() {
-  const groups=[{title:"진료 안내",path:"/clinic",items:["임플란트","교정치료","심미치료","보존치료","예방치료"]},{title:"병원 소개",path:"/about",items:["인사말","의료진 소개","첨단 장비","클리닉 갤러리","언론 보도"]},{title:"고객 센터",path:"/event",items:["온라인 예약","자주 묻는 질문","진료 전 안내","프릭 소개","문의하기"]}];
-  return <><div className={styles.footerSpacer} /><footer className={styles.footer}><div className={styles.footerInner}><div className={styles.footerInfo}><Link href="/" className={styles.footerBrand}><img src={asset("freak-mark.svg")} alt="" width="20" height="20" />프릭미래치과</Link><ul className={styles.contacts}><li><Icon name="pin" /><span>FREAK MIRAE DENTAL · Freak Makers</span></li><li><Icon name="phone" /><span>www.freakmakers.co.kr</span></li><li><Icon name="mail" /><span>freakmakers@gmail.com</span></li></ul><div className={styles.socials}><a href={brandUrl} aria-label="프릭메이커스 홈페이지">F</a><a href="mailto:freakmakers@gmail.com" aria-label="프릭미래치과 이메일 문의"><Icon name="mail" /></a></div></div><div className={styles.footerLinks}>{groups.map(group=><div key={group.title}><h3>{group.title}</h3><ul>{group.items.map(item=><li key={item}><a href={item === "프릭 소개" ? `${brandUrl}/introduce` : item === "문의하기" || item === "온라인 예약" ? `${brandUrl}/#contact` : item === "의료진 소개" ? "#team" : destination(group.path)}>{item}</a></li>)}</ul></div>)}</div></div><p className={styles.aiNotice}>현 사이트에서 사용된 이미지는 생성형 AI를 활용하여 제작되었습니다</p></footer>
-    
-  </>;
+  const [copyStatus, setCopyStatus] = useState("");
+  const groups = [
+    { title: "진료 안내", items: [["진료 소개", "#services"], ["특화 진료", "#signature"], ["치료 사례", "#results"]] },
+    { title: "병원 소개", items: [["의료진 소개", "#team"], ["병원 시설", "#clinic-gallery"], ["오시는 길", "#visit"]] },
+    { title: "문의 안내", items: [["진료 시간", "#visit"], ["상담 문의", "#contact"]] },
+  ];
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText("freakmakers@gmail.com");
+      setCopyStatus("이메일 주소를 복사했습니다.");
+    } catch {
+      setCopyStatus("이메일 주소를 선택해 직접 복사해주세요: freakmakers@gmail.com");
+    }
+  }
+  return <><div className={styles.footerSpacer} /><footer className={styles.footer} id="contact"><div className={styles.footerInner}><div className={styles.footerInfo}><a href="#intro" className={styles.footerBrand}><img src={asset("freak-mark.svg")} alt="" width="20" height="20" />프릭미래치과</a><ul className={styles.contacts}><li><Icon name="pin" /><span>FREAK MIRAE DENTAL · Freak Makers</span></li><li><Icon name="mail" /><span>freakmakers@gmail.com</span></li></ul><button className={styles.copyButton} type="button" onClick={copyEmail}>이메일 주소 복사</button><p className={styles.copyStatus} role="status">{copyStatus}</p></div><div className={styles.footerLinks}>{groups.map(group => <nav key={group.title} aria-label={group.title}><h3>{group.title}</h3><ul>{group.items.map(([label, href]) => <li key={href}><a href={href}>{label}</a></li>)}</ul></nav>)}</div></div><p className={styles.aiNotice}>현 사이트에서 사용된 이미지는 생성형 AI를 활용하여 제작되었습니다</p></footer></>;
 }
 
 export function DentalHomepage() {
