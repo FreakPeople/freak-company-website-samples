@@ -3,25 +3,19 @@
 /* Source photography has intentional fixed crops. */
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 
-const origin = "https://www.freakmakers.co.kr";
 const asset = (name: string) => `/sites/shining/${name}`;
-const source = (path: string) => {
-  if (path.includes("page6")) return `${origin}/introduce`;
-  if (path.includes("page10") || path.includes("page11") || path.includes("page15")) return `${origin}/#services`;
-  return `${origin}/#contact`;
-};
-const board = (table: number, id?: number) => {
-  void id;
-  if (table === 13) return `${origin}/#services`;
-  return `${origin}/#contact`;
-};
 const navigation = [
-  { title: "ABOUT", href: source("/sh_page/page6.php"), items: [["회사소개", source("/sh_page/page6.php")], ["회사연혁", source("/sh_page/page7.php")], ["조직도", source("/sh_page/page8.php")], ["오시는 길", board(21)]] },
-  { title: "BUSINESS", href: source("/sh_page/page10.php"), items: [["홈페이지제작", source("/sh_page/page10.php")], ["모바일웹", source("/sh_page/page11.php")], ["마케팅 최적화", source("/sh_page/page15.php")]] },
-  { title: "MEDIA", href: board(13), items: [["갤러리 A타입", board(13)], ["갤러리 B타입", board(35)], ["갤러리 C타입", board(36)], ["갤러리 D타입", board(41)]] },
-  { title: "CONTACT", href: board(42), items: [["공지사항", board(42)], ["제품문의", board(43)], ["고객센터", board(45)]] },
+  { title: "ABOUT", href: "#about" },
+  { title: "BUSINESS", href: "#business" },
+  { title: "PRODUCT", href: "#product" },
+  { title: "CONTACT", href: "#contact" },
+];
+const notices = [
+  { title: "프릭 스마트 클린 렌탈 서비스 안내", body: "생활 공간에 맞는 가전과 생활용품을 제안합니다. 필요한 제품과 이용 환경을 알려주시면 적합한 렌탈 서비스를 안내해 드립니다." },
+  { title: "기업 맞춤 렌탈 안내", body: "기업 규모와 업무 환경에 필요한 제품을 함께 검토합니다. 이용 기간과 관리 범위에 대한 상담은 아래 문의 안내에서 확인하세요." },
+  { title: "제품 관리와 서비스 지원", body: "렌탈 제품을 편리하게 이용할 수 있도록 관리와 지원 서비스를 제공합니다. 이용 중 궁금한 사항은 고객센터 문의 이메일로 알려주세요." },
+  { title: "렌탈 유통 창업 상담", body: "B2C 렌탈 유통과 서비스 대행 사업을 소개합니다. 관심 있는 사업 분야와 상담 내용을 이메일로 남겨주시면 안내해 드립니다." },
 ];
 const businesses = [
   { title: "B2C 창업 렌탈 유통", description: "B2C 렌탈 유통 창업으로 고객에게 일상에서 필요로 하는 제품을 간편하게 대여할 수 있는 솔루션을 제공합니다.", image: "business-1.jpg", id: 35 },
@@ -82,6 +76,15 @@ export function RentalHome() {
   };
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("");
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("freakmakers@gmail.com");
+      setCopyStatus("이메일 주소를 복사했습니다.");
+    } catch {
+      setCopyStatus("freakmakers@gmail.com 주소를 직접 복사해 주세요.");
+    }
+  };
   const [paused, setPaused] = useState(false);
   const touchStart = useRef<number | null>(null);
   useEffect(() => {
@@ -123,16 +126,16 @@ export function RentalHome() {
   return <div className="rental-site" ref={rootRef}>
     <a className="skip-link" href="#content">본문 바로가기</a>
     <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${menu ? "menu-open" : ""}`}>
-      <Link className="site-logo" href="/" aria-label="프릭렌탈 | FREAK rental"><img src={asset("freak-logo.svg")} width="154" height="24" alt="FREAK rental" /></Link>
+      <a className="site-logo" href="#intro" aria-label="프릭렌탈 | FREAK rental"><img src={asset("freak-logo.svg")} width="154" height="24" alt="FREAK rental" /></a>
       <nav className="desktop-nav" aria-label="메인 메뉴">
-        <ul>{navigation.map((nav) => <li key={nav.title}><a href={nav.href}>{nav.title}</a><ul className="submenu">{nav.items.map(([label, href]) => <li key={label}><a href={href}>{label}</a></li>)}</ul></li>)}</ul>
+        <ul>{navigation.map((nav) => <li key={nav.title}><a href={nav.href}>{nav.title}</a></li>)}</ul>
       </nav>
-      <a className="contact-pill" href={board(43)}>Contact us <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M16 3l5 5M10 14l1-5 8-8 5 5-8 8Z" /></svg></a>
+      <a className="contact-pill" href="#contact">Contact us <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M16 3l5 5M10 14l1-5 8-8 5 5-8 8Z" /></svg></a>
       <button className="menu-toggle" aria-label={menu ? "메뉴 닫기" : "메뉴 열기"} aria-expanded={menu} aria-controls="mobile-menu" onClick={() => setMenu(!menu)}><span /><span /></button>
-      {menu && <nav className="mobile-nav" id="mobile-menu" aria-label="모바일 메뉴">{navigation.map((nav) => <div key={nav.title}><a href={nav.href}>{nav.title}</a>{nav.items.map(([label, href]) => <a key={label} href={href}>{label}</a>)}</div>)}</nav>}
+      {menu && <nav className="mobile-nav" id="mobile-menu" aria-label="모바일 메뉴">{navigation.map((nav) => <div key={nav.title}><a href={nav.href} onClick={() => setMenu(false)}>{nav.title}</a></div>)}</nav>}
     </header>
     <main id="content">
-      <section className="hero" aria-label="메인 슬라이드" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <section id="intro" className="hero" aria-label="메인 슬라이드" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
         {[1, 2, 3].map((n, i) => <div key={n} className={`hero-image hero-image-${n} ${hero === i ? "active" : ""}`} />)}
         <div className="hero-copy">
           <p className="hero-eyebrow">Towards New Possibilities</p>
@@ -153,14 +156,14 @@ export function RentalHome() {
                 setBusinessTransition(false);
                 setBusinessPosition(businessPosition === 4 ? 1 : 3);
               }
-            }}>{[2, 0, 1, 2, 0].map((itemIndex, offset) => { const item = businesses[itemIndex]; return <article className="business-card" key={`${offset}-${item.id}`}><a className="business-photo" href={board(13, item.id)}><img src={asset(item.image)} alt={item.title} width="620" height="550" /></a><div className="business-info"><p className="business-pagination"><b>0{business + 1}</b><span> / 03</span></p><h3>{item.title}</h3><p>{item.description}</p><More href={board(13)} label={`${item.title} 더보기`} /></div></article>; })}</div>
+            }}>{[2, 0, 1, 2, 0].map((itemIndex, offset) => { const item = businesses[itemIndex]; return <article className="business-card" key={`${offset}-${item.id}`}><div className="business-photo"><img src={asset(item.image)} alt={item.title} width="620" height="550" /></div><div className="business-info"><p className="business-pagination"><b>0{business + 1}</b><span> / 03</span></p><h3>{item.title}</h3><p>{item.description}</p><More href="#contact" label={`${item.title} 상담 안내`} /></div></article>; })}</div>
           </div>
         </div>
       </section>
-      <section className="product" id="product"><div className="product-heading" data-reveal><p className="eyebrow">OUR PRODUCT</p><h2>단순한 제품 제공을 넘어서 고객의 삶의 질을 높이고<br /> <strong>새로운 경험을 선사하겠습니다.</strong></h2></div><div className="product-grid"><div className="product-photo"><div><h3>고객만족을 위한 철저한 관리와<br />신속한 서비스를 약속드립니다.</h3><p>지속인 관리, 지원 서비스로 신뢰할 수 있는 만족감을 드립니다.</p><More href={board(42)} label="제품 소식 더보기" /></div></div><div className="notices">{[11, 10, 9, 8].map((id) => <a className="notice" href={board(42, id)} key={id}><span className="notice-tag">NOTICE</span><h3>프릭 스마트 클린 렌탈 서비스 안내</h3><p>B2C 렌탈 유통 창업으로 고객에게 일상에서 필요로 하는 다양한 제품을 간편하게 대여할 수 있는..</p><time dateTime="2024-08-23">2024-08-23</time></a>)}</div></div></section>
-      <section className="rental-about" id="about"><div className="about-heading" data-reveal><div><p className="eyebrow">FREAK RENTAL</p><h2>고객의 일상을 편리하고<br />풍요롭게 만들기위해 언제나<br />노력하겠습니다.</h2></div><p className="about-description">최신의 가전제품과 트렌디한 생활용품을 부담 없이 누릴 수 있도록<br />도와드리며, 고객의 라이프스타일에 최적화된 맞춤형 렌탈 솔루션을 제안하여,<br />고품질 제품과 빠르고 신뢰할 수 있는 서비스로 만족을 드립니다.</p></div><div className="team-photo"><img src={asset("section-3.jpg")} alt="함께 소통하며 일하는 프릭렌탈 팀" width="1842" height="683" /><a className="detail-view" href={source("/sh_page/page6.php")}><span><Arrow /></span>DETAIL VIEW</a></div></section>
-      <section className="contact-section" id="contact"><div className="contact-heading" data-reveal><p className="eyebrow">CONTACT US</p><h2>고객의 다양한 니즈를 위해<br />최상의 렌탈 서비스를 제공합니다.</h2></div><div className="contact-row"><h3>제품문의</h3><p>유연한 계약 조건과 서비스로 고객의 부담을 덜어드리며, 지속적으로<br />관리하고 지원하는 서비스를 통해 안심하고 사용할 수 있습니다.</p><More href={board(43)} label="제품문의 더보기" /></div><div className="contact-row"><h3>고객센터</h3><p>고객의 필요와 라이프스타일에 최적화된 맞춤형 렌탈 솔루션을 제안하며,<br />고품질 제품과 빠르고 신뢰할 수 있는 서비스로 만족을 드립니다.</p><More href={board(45)} label="고객센터 더보기" /></div></section>
+      <section className="product" id="product"><div className="product-heading" data-reveal><p className="eyebrow">OUR PRODUCT</p><h2>단순한 제품 제공을 넘어서 고객의 삶의 질을 높이고<br /> <strong>새로운 경험을 선사하겠습니다.</strong></h2></div><div className="product-grid"><div className="product-photo"><div><h3>고객만족을 위한 철저한 관리와<br />신속한 서비스를 약속드립니다.</h3><p>지속인 관리, 지원 서비스로 신뢰할 수 있는 만족감을 드립니다.</p><More href="#contact" label="제품 상담 안내" /></div></div><div className="notices">{notices.map((notice) => <article className="notice" key={notice.title}><span className="notice-tag">NOTICE</span><h3>{notice.title}</h3><p>{notice.body}</p></article>)}</div></div></section>
+      <section className="rental-about" id="about"><div className="about-heading" data-reveal><div><p className="eyebrow">FREAK RENTAL</p><h2>고객의 일상을 편리하고<br />풍요롭게 만들기위해 언제나<br />노력하겠습니다.</h2></div><p className="about-description">최신의 가전제품과 트렌디한 생활용품을 부담 없이 누릴 수 있도록<br />도와드리며, 고객의 라이프스타일에 최적화된 맞춤형 렌탈 솔루션을 제안하여,<br />고품질 제품과 빠르고 신뢰할 수 있는 서비스로 만족을 드립니다.</p></div><div className="team-photo"><img src={asset("section-3.jpg")} alt="함께 소통하며 일하는 프릭렌탈 팀" width="1842" height="683" /><a className="detail-view" href="#contact"><span><Arrow /></span>문의 안내</a></div></section>
+      <section className="contact-section" id="contact"><div className="contact-heading" data-reveal><p className="eyebrow">CONTACT US</p><h2>고객의 다양한 니즈를 위해<br />최상의 렌탈 서비스를 제공합니다.</h2></div><div className="contact-row"><h3>제품문의</h3><p>유연한 계약 조건과 서비스로 고객의 부담을 덜어드리며, 지속적으로<br />관리하고 지원하는 서비스를 통해 안심하고 사용할 수 있습니다.</p><More href="#contact-info" label="제품문의 이메일 확인" /></div><div className="contact-row"><h3>고객센터</h3><p>고객의 필요와 라이프스타일에 최적화된 맞춤형 렌탈 솔루션을 제안하며,<br />고품질 제품과 빠르고 신뢰할 수 있는 서비스로 만족을 드립니다.</p><More href="#contact-info" label="고객센터 이메일 확인" /></div></section>
     </main>
-    <footer className="site-footer"><div className="footer-inner"><div className="footer-top"><Link href="/" aria-label="홈"><img src={asset("freak-logo.svg")} width="154" height="24" alt="FREAK rental" /></Link><div><a href={`${origin}/introduce`} target="_blank" rel="noopener noreferrer">프릭 소개</a><a href={`${origin}/#services`} target="_blank" rel="noopener noreferrer">서비스 안내</a><a href={board(21, 1)}>문의하기</a></div></div><div className="footer-address"><p>프릭렌탈 · FREAK rental<br />당신의 일상에 새로운 가치를 더하는 렌탈 파트너<br />홈페이지 : www.freakmakers.co.kr 이메일 : <a href="mailto:freakmakers@gmail.com">freakmakers@gmail.com</a></p><a className="brochure" href={`${origin}/introduce`} target="_blank" rel="noopener noreferrer">프릭 소개 <svg width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 16v5h16v-5" /></svg></a></div><div className="copyright"><span>ⓒ 프릭렌탈 | FREAK rental</span><div><a href={`${origin}/#contact`}>CONTACT</a><a href={origin} target="_blank" rel="noopener noreferrer">FREAK MAKERS</a></div></div></div></footer>
+    <footer className="site-footer"><div className="footer-inner"><div className="footer-top"><a href="#intro" aria-label="홈"><img src={asset("freak-logo.svg")} width="154" height="24" alt="FREAK rental" /></a><div><a href="#about">프릭 소개</a><a href="#business">서비스 안내</a><a href="#contact">문의하기</a></div></div><div className="footer-address" id="contact-info"><div><p>프릭렌탈 · FREAK rental<br />당신의 일상에 새로운 가치를 더하는 렌탈 파트너<br />이메일 : freakmakers@gmail.com</p><button className="email-copy" onClick={copyEmail}>이메일 주소 복사</button><p role="status">{copyStatus}</p></div><a className="brochure" href="#about">프릭 소개 <Arrow /></a></div><div className="copyright"><span>ⓒ 프릭렌탈 | FREAK rental</span><div><a href="#contact">CONTACT</a><a href="#intro">FREAK RENTAL</a></div></div></div></footer>
   </div>;
 }
