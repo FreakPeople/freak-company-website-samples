@@ -25,12 +25,11 @@ const gallery = [
   "3fbe6fda-352e-4b97-a3d4-25a166c8c366.webp",
   "ba5cb158-f8ef-4110-ae0f-f77685f9b931.webp",
   "349e60c1-9b71-4809-a40f-4e1d4282b3e4.webp",
-  "8d6e328e-ead9-430c-9b3a-4f5114728fc5.webp",
 ];
 
 const videos = [
   { image: "8f072cad-70e0-4b61-be23-d027aa921064.png", title: "임플란트에 대한 모든 것", desc: "서울대·연세대 출신 전문의가 직접 짚어주는 수술 핵심 과정부터 부작용 없이 오래 사용하는 임플란트 관리 노하우의 모든 것" },
-  { image: "84d0b82d-7cb4-4c7a-b44a-a262ee54b5ea.png", title: "밝은 미래 치과 방문 후기", desc: "첫 방문 상담부터 수술, 회복까지의 전 과정을 환자의 시선으로 숨김없이 생생하게 전해드리는 리얼 진료 후기 인터뷰" },
+  { image: "84d0b82d-7cb4-4c7a-b44a-a262ee54b5ea.png", title: "프릭미래치과 방문 후기", desc: "첫 방문 상담부터 수술, 회복까지의 전 과정을 환자의 시선으로 숨김없이 생생하게 전해드리는 리얼 진료 후기 인터뷰" },
   { image: "8b119c35-8cc4-48d2-a5e3-c08832b309f0.png", title: "통증 줄이는 치과 치료의 비밀", desc: "치과 방문이 무서운 분들을 위한 단계별 맞춤형 무통 마취와 통증과 두려움을 덜어주는 안심 케어 시스템을 공개합니다" },
 ];
 
@@ -93,7 +92,7 @@ function ClinicGallery() {
       startX.current = null;
     }}>
       {gallery.map((photo, index) => <figure key={photo} className={styles.galleryPhoto} data-active={active === index} aria-hidden={active !== index}>
-        <img src={asset(photo)} alt={`밝은미래치과 시설 ${index + 1}`} loading="lazy" />
+        <img src={asset(photo)} alt={`프릭미래치과 시설 ${index + 1}`} loading="lazy" />
       </figure>)}
       <button type="button" className={`${styles.galleryArrow} ${styles.previous}`} aria-label="이전 사진" onClick={() => change(-1)}><svg viewBox="0 0 16 28" aria-hidden="true"><path d="M13 2L3 14l10 12" /></svg></button>
       <button type="button" className={`${styles.galleryArrow} ${styles.next}`} aria-label="다음 사진" onClick={() => change(1)}><svg viewBox="0 0 16 28" aria-hidden="true"><path d="M3 2l10 12L3 26" /></svg></button>
@@ -110,7 +109,7 @@ export function LowerSections() {
   return <>
     <section className={styles.results} id="results" aria-label="치료 전후 사례">
       <div className="lea-container">
-        <Reveal><Heading eyebrow="CLINICAL RESULTS" description={<>밝은미래치과는 모든 분야의 치과 전문의가 협진하여<br />환자 개개인에 맞는 최적의 치료 계획을 설계합니다.</>}>
+        <Reveal><Heading eyebrow="CLINICAL RESULTS" description={<>프릭미래치과는 모든 분야의 치과 전문의가 협진하여<br />환자 개개인에 맞는 최적의 치료 계획을 설계합니다.</>}>
           수많은 환자들의<br /><span>생생한 시술 결과입니다</span>
         </Heading></Reveal>
         <Reveal fade><div className={styles.resultsGrid}>{cases.map(item => <article className={styles.resultCard} key={item.before}>
@@ -130,7 +129,7 @@ export function LowerSections() {
       <div className="lea-container">
         <Reveal><div className={styles.teamHeading}>
           <Heading eyebrow="MEDICAL TEAM" left description="각 분야별 전문의가 체계적인 진단과 치료 계획을 통해 최상의 결과를 약속합니다.">다양한 경험과 전문성을<br />갖춘 우수한 의료진</Heading>
-          <ArrowLink href="https://lea1.imweb.me/doctor">의료진 더보기</ArrowLink>
+          <ArrowLink href="#team">의료진 더보기</ArrowLink>
         </div></Reveal>
         <Reveal><div className={styles.doctors}>{doctors.map(doctor => <article className={styles.doctorCard} key={doctor.name}>
           <div className={styles.doctorPhoto}><img src={asset(doctor.photo)} alt={doctor.name} loading="lazy" /></div>
@@ -151,12 +150,12 @@ export function LowerSections() {
       <div className="lea-container">
         <Reveal><Heading eyebrow="OUR YOUTUBE">궁금했던 치과 치료,<br />영상으로 쉽게 확인하세요</Heading></Reveal>
         <Reveal><div className={styles.videoGrid}>{videos.map(video => <article className={styles.videoCard} key={video.title}>
-          <button className={styles.videoCover} type="button" disabled aria-label={`${video.title} 영상 재생`} title="원본 사이트에 재생 영상이 등록되어 있지 않습니다.">
+          <button className={styles.videoCover} type="button" disabled aria-label={`${video.title} 영상 재생`} title="프릭미래치과 진료 영상을 준비하고 있습니다.">
             <img src={asset(video.image)} alt="" loading="lazy" /><span className={styles.playIcon} aria-hidden="true" />
           </button>
           <div className={styles.videoText}><h3>{video.title}</h3><p>{video.desc}</p></div>
         </article>)}</div></Reveal>
-        <Reveal><div className={styles.youtubeMore}><ArrowLink href="https://lea1.imweb.me/" light>유튜브 보러가기</ArrowLink></div></Reveal>
+        <Reveal><div className={styles.youtubeMore}><ArrowLink href="https://www.freakmakers.co.kr/" light>프릭메이커스 보러가기</ArrowLink></div></Reveal>
       </div>
     </section>
   </>;

@@ -6,7 +6,14 @@ import Link from "next/link";
 import { LowerSections } from "./lower-sections";
 import styles from "./dental-homepage.module.css";
 
-const origin = "https://lea1.imweb.me";
+const brandUrl = "https://www.freakmakers.co.kr";
+const destination = (path: string) => {
+  if (path === "/clinic") return "#services";
+  if (path === "/about") return "#clinic-gallery";
+  if (path === "/doctor") return "#team";
+  if (path === "/event") return "#results";
+  return "#visit";
+};
 const asset = (name: string) => `/sites/lea1/${name}`;
 const nav = [["진료 소개", "/clinic"], ["병원 소개", "/about"], ["의료진 소개", "/doctor"], ["프로모션", "/event"]];
 
@@ -60,15 +67,15 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <button className={styles.menuButton} onClick={() => setOpen(true)} aria-label="메뉴 열기" aria-expanded={open}><Icon name="menu" /></button>
-        <Link className={styles.logo} href="/" aria-label="밝은미래치과 홈"><img src={asset("85245501cae27.png")} alt="밝은미래치과" width="174" height="29" /></Link>
-        <nav className={styles.desktopNav} aria-label="주 메뉴">{nav.map(([label, path]) => <a key={path} href={origin + path}>{label}</a>)}</nav>
-        <Link className={styles.inquiry} href="/">온라인 견적 문의 <Icon name="arrow" /></Link>
-        <Link className={styles.mobileCall} href="/" aria-label="온라인 견적 문의"><Icon name="headset" /></Link>
+        <Link className={styles.logo} href="/" aria-label="프릭미래치과 홈"><img src={asset("freak-logo.svg")} alt="프릭미래치과" width="210" height="40" /></Link>
+        <nav className={styles.desktopNav} aria-label="주 메뉴">{nav.map(([label, path]) => <a key={path} href={destination(path)}>{label}</a>)}</nav>
+        <Link className={styles.inquiry} href={`${brandUrl}/#contact`}>온라인 견적 문의 <Icon name="arrow" /></Link>
+        <Link className={styles.mobileCall} href={`${brandUrl}/#contact`} aria-label="온라인 견적 문의"><Icon name="headset" /></Link>
       </div>
     </header>
     {open && <div className={styles.menuOverlay}>
       <button className={styles.menuBackdrop} onClick={() => setOpen(false)} aria-label="메뉴 닫기" />
-      <nav className={styles.mobileNav} aria-label="모바일 메뉴"><div className={styles.loginRow}><span>로그인이 필요합니다.</span><a href={`${origin}/?mode=login`}>로그인</a></div>{nav.map(([label,path]) => <a key={path} href={origin+path}>{label}</a>)}</nav>
+      <nav className={styles.mobileNav} aria-label="모바일 메뉴"><div className={styles.loginRow}><span>프릭미래치과에 오신 것을 환영합니다.</span><a href={`${brandUrl}/#contact`}>문의</a></div>{nav.map(([label,path]) => <a key={path} href={destination(path)}>{label}</a>)}</nav>
       <button className={styles.closeMenu} onClick={() => setOpen(false)} aria-label="메뉴 닫기"><Icon name="close" /></button>
     </div>}
   </>;
@@ -98,7 +105,7 @@ function Hero() {
       {all.map((slide,i) => <div key={i} className={styles.heroSlide} aria-hidden={current !== i}>
         <img src={asset(slide.image)} alt="" fetchPriority={i === 1 ? "high" : "auto"} draggable={false} />
         <div className={styles.heroDim} />
-        <div className={styles.heroCopy}><p>{slide.eyebrow}</p><h1>{slide.title[0]}<br />{slide.title[1]}</h1><ActionLink href={`${origin}/clinic`} light>{slide.cta}</ActionLink></div>
+        <div className={styles.heroCopy}><p>{slide.eyebrow}</p><h1>{slide.title[0]}<br />{slide.title[1]}</h1><ActionLink href="#services" light>{slide.cta}</ActionLink></div>
       </div>)}
     </div><div className={styles.heroBase} />
   </section>;
@@ -119,8 +126,8 @@ function Services() {
     const timer = setInterval(() => setActive(i => (i + 1) % services.length),4000);
     return () => clearInterval(timer);
   },[paused]);
-  return <section className={styles.services}>
-    <div className="lea-container"><Reveal className={styles.sectionHeading}><p>OUR SERVICES</p><h2>분야별 전문 진료를 소개합니다</h2><div>밝은미래치과는 모든 분야의 치과 전문의가 협진하여 환자<br />개개인에 맞는 최적의 치료 계획을 설계합니다.</div></Reveal>
+  return <section className={styles.services} id="services">
+    <div className="lea-container"><Reveal className={styles.sectionHeading}><p>OUR SERVICES</p><h2>분야별 전문 진료를 소개합니다</h2><div>프릭미래치과는 모든 분야의 치과 전문의가 협진하여 환자<br />개개인에 맞는 최적의 치료 계획을 설계합니다.</div></Reveal>
       <div className={styles.serviceCards} aria-label="진료 과목" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
         {services.map((s,i) => <button key={s.badge} className={styles.serviceCard} data-open={active === i} onMouseEnter={() => setActive(i)} onFocus={() => { setPaused(true); setActive(i); }} onBlur={() => setPaused(false)} onClick={() => setActive(i)} aria-expanded={active === i}>
           <img src={asset(s.image)} alt="" loading="lazy" /><span className={styles.serviceGradient} /><span className={styles.serviceContent}><span className={styles.badge}>{s.badge}</span><span className={styles.serviceTitle}>{s.title}</span><span className={styles.serviceDesc}>{s.desc}<br />{s.more}</span></span>
@@ -132,7 +139,7 @@ function Services() {
 
 function Strengths() {
   return <section className={styles.strengths}><Reveal className={`lea-container ${styles.strengthsRow}`}>
-    <div className={styles.strengthsCopy}><p className={styles.eyebrow}>OUR STRENGTHS</p><h2>오래 유지되는<br />치아를 위한 맞춤 진료</h2><p className={styles.strengthsDesc}>한 번의 치료로 끝나는 것이 아니라, 오랫동안 건강하게 유지될 수 있는<br className={styles.desktopBreak} /> 치아를 목표로 합니다. 밝은미래치과는 정밀 진단과 체계적인 치료 계획을<br className={styles.desktopBreak} /> 통해 재치료 없는 튼튼한 결과를 약속드리며, 치료 후에도 꾸준한 관리와<br className={styles.desktopBreak} /> 정기 검진으로 환자분의 구강 건강을 끝까지 책임집니다.</p><ActionLink href={`${origin}/clinic`}>병원소개 보러가기</ActionLink></div>
+    <div className={styles.strengthsCopy}><p className={styles.eyebrow}>OUR STRENGTHS</p><h2>오래 유지되는<br />치아를 위한 맞춤 진료</h2><p className={styles.strengthsDesc}>한 번의 치료로 끝나는 것이 아니라, 오랫동안 건강하게 유지될 수 있는<br className={styles.desktopBreak} /> 치아를 목표로 합니다. 프릭미래치과는 정밀 진단과 체계적인 치료 계획을<br className={styles.desktopBreak} /> 통해 재치료 없는 튼튼한 결과를 약속드리며, 치료 후에도 꾸준한 관리와<br className={styles.desktopBreak} /> 정기 검진으로 환자분의 구강 건강을 끝까지 책임집니다.</p><ActionLink href="#services">병원소개 보러가기</ActionLink></div>
     <div className={styles.strengthsImage}><img src={asset("ef75fa8e-20ac-4da8-ad01-c92263e6083b.webp")} alt="환자와 상담하는 치과 의료진" loading="lazy" /></div>
   </Reveal></section>;
 }
@@ -160,7 +167,7 @@ function SignatureSystem() {
   },[paused]);
   const move = (d:number) => setActive(i => (i+d+steps.length)%steps.length);
   return <section className={styles.signature}>
-    <Reveal className={`${styles.sectionHeading} ${styles.signatureHeading}`}><p>SIGNATURE SYSTEM</p><h2>밝은미래치과만의 특화된<br />원데이 임플란트 진료 시스템</h2></Reveal>
+    <Reveal className={`${styles.sectionHeading} ${styles.signatureHeading}`}><p>SIGNATURE SYSTEM</p><h2>프릭미래치과만의 특화된<br />원데이 임플란트 진료 시스템</h2></Reveal>
     <Reveal className={styles.wideContainer}>
       <div className={styles.step} aria-label="진료 단계 안내" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
         onPointerDown={e => { start.current=e.clientX; }} onPointerUp={e => { if (start.current !== null && Math.abs(e.clientX-start.current)>40) move(e.clientX<start.current ? 1 : -1); start.current=null; }}>
@@ -187,12 +194,12 @@ function VisitUs() {
 }
 
 function QuickMenu() {
-  return <aside className={styles.quickMenu} aria-label="바로가기 메뉴">{[["calendar","예약하기",`${origin}/booking`,""],["book","공식블로그","/",""],["phone","전화상담","tel:023454562","02-345-4562"]].map(([icon,label,href,sub])=><a key={label} href={href}><Icon name={icon} /><span><b>{label}</b>{sub&&<small>{sub}</small>}</span></a>)}</aside>;
+  return <aside className={styles.quickMenu} aria-label="바로가기 메뉴">{[["calendar","예약하기","#visit",""],["book","프릭 소개",`${brandUrl}/introduce`,""],["mail","이메일 문의","mailto:freakmakers@gmail.com",""]].map(([icon,label,href,sub])=><a key={label} href={href}><Icon name={icon} /><span><b>{label}</b>{sub&&<small>{sub}</small>}</span></a>)}</aside>;
 }
 
 function Footer() {
-  const groups=[{title:"진료 안내",path:"/clinic",items:["임플란트","교정치료","심미치료","보존치료","예방치료"]},{title:"병원 소개",path:"/about",items:["인사말","의료진 소개","첨단 장비","클리닉 갤러리","언론 보도"]},{title:"고객 센터",path:"/event",items:["온라인 예약","자주 묻는 질문","진료 전 안내","개인정보처리방침","이용약관"]}];
-  return <><div className={styles.footerSpacer} /><footer className={styles.footer}><div className={styles.footerInner}><div className={styles.footerInfo}><Link href="/" className={styles.footerBrand}><img src={asset("938b9c41-e655-4fe7-9965-979fd5eee2ad.webp")} alt="" width="20" height="20" />밝은미래치과</Link><ul className={styles.contacts}><li><Icon name="pin" /><span>서울특별시 강남구 테헤란로 123, OO빌딩 6층</span></li><li><Icon name="phone" /><span>02-1234-5678</span></li><li><Icon name="mail" /><span>info@brightfuture-dental.kr</span></li></ul><div className={styles.socials}>{["instagram","youtube","facebook"].map((name,i)=><a key={name} href="https://remaintemp2.imweb.me/" aria-label={["인스타그램","유튜브","페이스북"][i]}><Icon name={name} /></a>)}</div></div><div className={styles.footerLinks}>{groups.map(group=><div key={group.title}><h3>{group.title}</h3><ul>{group.items.map(item=><li key={item}><a href={origin+group.path}>{item}</a></li>)}</ul></div>)}</div></div><p className={styles.aiNotice}>현 사이트에서 사용된 이미지는 생성형 AI를 활용하여 제작되었습니다</p></footer>
+  const groups=[{title:"진료 안내",path:"/clinic",items:["임플란트","교정치료","심미치료","보존치료","예방치료"]},{title:"병원 소개",path:"/about",items:["인사말","의료진 소개","첨단 장비","클리닉 갤러리","언론 보도"]},{title:"고객 센터",path:"/event",items:["온라인 예약","자주 묻는 질문","진료 전 안내","프릭 소개","문의하기"]}];
+  return <><div className={styles.footerSpacer} /><footer className={styles.footer}><div className={styles.footerInner}><div className={styles.footerInfo}><Link href="/" className={styles.footerBrand}><img src={asset("freak-mark.svg")} alt="" width="20" height="20" />프릭미래치과</Link><ul className={styles.contacts}><li><Icon name="pin" /><span>FREAK MIRAE DENTAL · Freak Makers</span></li><li><Icon name="phone" /><span>www.freakmakers.co.kr</span></li><li><Icon name="mail" /><span>freakmakers@gmail.com</span></li></ul><div className={styles.socials}><a href={brandUrl} aria-label="프릭메이커스 홈페이지">F</a><a href="mailto:freakmakers@gmail.com" aria-label="프릭미래치과 이메일 문의"><Icon name="mail" /></a></div></div><div className={styles.footerLinks}>{groups.map(group=><div key={group.title}><h3>{group.title}</h3><ul>{group.items.map(item=><li key={item}><a href={item === "프릭 소개" ? `${brandUrl}/introduce` : item === "문의하기" || item === "온라인 예약" ? `${brandUrl}/#contact` : item === "의료진 소개" ? "#team" : destination(group.path)}>{item}</a></li>)}</ul></div>)}</div></div><p className={styles.aiNotice}>현 사이트에서 사용된 이미지는 생성형 AI를 활용하여 제작되었습니다</p></footer>
     
   </>;
 }

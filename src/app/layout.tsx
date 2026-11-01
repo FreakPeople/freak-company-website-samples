@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "밝은미래치과",
-  description: "정밀 진단과 체계적인 치료 계획, 밝은미래치과",
+  applicationName: "FREAK MIRAE DENTAL",
+  title: "프릭미래치과",
+  description: "정밀 진단과 체계적인 치료 계획, 프릭미래치과",
   robots: { index: false, follow: false },
 };
 
