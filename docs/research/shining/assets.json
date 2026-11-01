@@ -1,0 +1,87 @@
+[
+  {
+    "source": "https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff2",
+    "local": "/sites/shining/fonts/LotteMartDreamBold.woff2",
+    "bytes": 1366100
+  },
+  {
+    "source": "https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2",
+    "local": "/sites/shining/fonts/LotteMartDreamLight.woff2",
+    "bytes": 1017308
+  },
+  {
+    "source": "https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2",
+    "local": "/sites/shining/fonts/LotteMartDreamMedium.woff2",
+    "bytes": 1186568
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/hd/top_menu/logo.png",
+    "local": "/sites/shining/sh_img/hd/top_menu/logo.png",
+    "bytes": 2842
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc01/bg_icon.png",
+    "local": "/sites/shining/sh_img/include/inc01/bg_icon.png",
+    "bytes": 22434
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc01/icon01.png",
+    "local": "/sites/shining/sh_img/include/inc01/icon01.png",
+    "bytes": 5184
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc01/icon02.png",
+    "local": "/sites/shining/sh_img/include/inc01/icon02.png",
+    "bytes": 4508
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc01/icon03.png",
+    "local": "/sites/shining/sh_img/include/inc01/icon03.png",
+    "bytes": 3327
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc01/icon04.png",
+    "local": "/sites/shining/sh_img/include/inc01/icon04.png",
+    "bytes": 4794
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc02/bg_img.png",
+    "local": "/sites/shining/sh_img/include/inc02/bg_img.png",
+    "bytes": 75721
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc02/icon01.png",
+    "local": "/sites/shining/sh_img/include/inc02/icon01.png",
+    "bytes": 2057
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc02/icon02.png",
+    "local": "/sites/shining/sh_img/include/inc02/icon02.png",
+    "bytes": 1677
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc02/icon03.png",
+    "local": "/sites/shining/sh_img/include/inc02/icon03.png",
+    "bytes": 2186
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/include/inc02/icon04.png",
+    "local": "/sites/shining/sh_img/include/inc02/icon04.png",
+    "bytes": 1908
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/index/main_banner/img01.jpg",
+    "local": "/sites/shining/sh_img/index/main_banner/img01.jpg",
+    "bytes": 107524
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/index/main_banner/img02.jpg",
+    "local": "/sites/shining/sh_img/index/main_banner/img02.jpg",
+    "bytes": 184675
+  },
+  {
+    "source": "https://co1108.shiningcorp.com/sh_img/index/main_banner/img03.jpg",
+    "local": "/sites/shining/sh_img/index/main_banner/img03.jpg",
+    "bytes": 367398
+  }
+]
